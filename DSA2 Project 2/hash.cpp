@@ -39,6 +39,7 @@ hashTable::hashTable(int size)
 int hashTable::insert(const std::string &key, void *pv) 
 {
     int hashIndex = hash(key); //Send to hash function
+    int deletedIndex = -1;
 
     while (data[hashIndex].isOccupied == true) 
     {
@@ -46,30 +47,36 @@ int hashTable::insert(const std::string &key, void *pv)
         {
             if (data[hashIndex].isDeleted == true)
             {
-                break;
+                data[hashIndex].isDeleted = false;
+                data[hashIndex].pv = pv;
+                return 0;
             }
             else
             {
                 return 1;
             }
         }
-
         else
         {
-            if (data[hashIndex].isDeleted == true)
+            if (data[hashIndex].isDeleted == true && deletedIndex == -1)
             {
-                break;
+                deletedIndex = hashIndex;
             }
 
             if (hashIndex != (capacity - 1)) 
             {
-                hashIndex++; //linear probe
+                hashIndex++; 
             } 
             else 
             {
-                hashIndex = 0; //If end is reached start back from 0
+                hashIndex = 0; 
             }
         }
+    }
+
+    if (deletedIndex != -1) 
+    {
+        hashIndex = deletedIndex;
     }
 
     //Insert key once open spot is available
