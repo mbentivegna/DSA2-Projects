@@ -18,7 +18,7 @@ heap::heap(int capacity)
 
 int heap::insert(const std::string &id, int key, void *pv)
 {
-    if (filled < capacity)
+    if (filled < capacity - 1)
     {
         if(hash->contains(id) == true)
         {
@@ -75,15 +75,15 @@ int heap::deleteMin(std::string *pId, int *pKey, void *ppData)
 {
     if (filled > 0)
     {
-        if (pId != NULL) 
+        if (pId != nullptr) 
         {
             *pId = data[1].id;
         }
-        if (pKey != NULL)
+        if (pKey != nullptr)
         {
             *pKey = data[1].key;
         } 
-        if (ppData != NULL)
+        if (ppData != nullptr)
         {
             *(static_cast <void**> (ppData)) = data[1].pData;
         } 
@@ -106,7 +106,6 @@ int heap::remove(const std::string &id, int *pKey, void *ppData)
     if(hash->contains(id) == true)
     {
         node* p= static_cast<node *>(hash->getPointer(id));
-        int index = getPosition(p);
 
         if (pKey != nullptr)
         {
