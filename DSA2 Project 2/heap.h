@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <climits>
 #include "hash.h"
 using namespace std;
 
@@ -71,24 +72,21 @@ class heap
 
  private:
   int capacity;
-  int size;
+  int filled;
 
   class node 
   {
     public:
-        string id;
-        int key;
-        void *pData;
+      string id;
+      int key;
+      void *pData;
   };
   vector<node>data;
-  hashTable *mapping;
+  hashTable *hash;
 
-  
   void percolateUp(int pos);
-
   void percolateDown(int pos);
-
-  int getPos(node *pData);
+  int getPosition(node *p);
 };
 
 #endif
