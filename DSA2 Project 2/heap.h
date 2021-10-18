@@ -70,10 +70,12 @@ class heap
   //
   int remove(const std::string &id, int *pKey = nullptr, void *ppData = nullptr);
 
+ //Private class members
  private:
   int capacity;
   int filled;
 
+  //Create a node subclass to be used as the datatype of the data array
   class node 
   {
     public:
@@ -81,9 +83,12 @@ class heap
       int key;
       void *pData;
   };
+
+  //Initialize hashtable and priority queue array
   vector<node>data;
   hashTable *hash;
 
+  //Private function declarations
   void percolateUp(int pos);
   void percolateDown(int pos);
   int getPosition(node *p);

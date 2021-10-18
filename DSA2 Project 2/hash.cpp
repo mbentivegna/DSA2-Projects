@@ -1,6 +1,9 @@
 /*
 Michael Bentivegna
 Heap Assignment
+
+        Check the heap.cpp for a full description of the project. This hashtable class has been updated to allow the heap to 
+    better it's time complexity when searching for given id's. 
 */
 
 #include "hash.h"
@@ -38,10 +41,13 @@ int hashTable::insert(const std::string &key, void *pv)
     int hashIndex = hash(key); //Send to hash function
     int deletedIndex = -1;
 
+    //Linear probe until empty spot is reached
     while (data[hashIndex].isOccupied == true) 
     {
+        //Check if the key already exists in the array
         if (data[hashIndex].key == key)
         {
+            //If it is deleted then refill it with the correct values
             if (data[hashIndex].isDeleted == true)
             {
                 data[hashIndex].isDeleted = false;
@@ -55,11 +61,14 @@ int hashTable::insert(const std::string &key, void *pv)
         }
         else
         {
+            //If there is a lazily deleted spot, mark it's index but do not return yet
+            //Cannot return just in case the id exists later on in the probe
             if (data[hashIndex].isDeleted == true && deletedIndex == -1)
             {
                 deletedIndex = hashIndex;
             }
 
+            //Increment
             if (hashIndex != (capacity - 1)) 
             {
                 hashIndex++; 
@@ -71,6 +80,7 @@ int hashTable::insert(const std::string &key, void *pv)
         }
     }
 
+    //Now since the function wasn't already returned for another reason, we can used the deleted index found earlier
     if (deletedIndex != -1) 
     {
         hashIndex = deletedIndex;
@@ -113,10 +123,13 @@ int hashTable::findPos(const string &key)
 {
     int hashIndex = hash(key); //Send to hash function
 
+    //Check if the key exists
     while (data[hashIndex].isOccupied == true)
     {
+        //Match the key with itself in the hashtable
         if (data[hashIndex].key == key) 
         {
+            //If it was not deleted, the position has been found
             if(data[hashIndex].isDeleted == false)
             {
                 return hashIndex;
@@ -127,7 +140,8 @@ int hashTable::findPos(const string &key)
             }
         }
         else 
-        {
+        {   
+            //Increment through the hashtable
             if (hashIndex != (capacity - 1)) 
             {
                 hashIndex++; 
@@ -142,8 +156,10 @@ int hashTable::findPos(const string &key)
     return -1;
 }
 
+//Lazily delete the value in the hashtable
 bool hashTable::remove(const std::string &key)
 {
+    //Check if it exists
     int pos = findPos(key);
     if (pos == -1)
     {
@@ -207,8 +223,10 @@ bool hashTable::rehash()
     return true;
 }
 
+//Set the pointer of a specified key
 int hashTable::setPointer(const std::string &key, void *pv)
 {
+    //Check if it exists
     int pos = findPos(key);
     if(pos == -1)
     {
@@ -221,8 +239,10 @@ int hashTable::setPointer(const std::string &key, void *pv)
     }
 }
 
+//Get the pointer of a specified key
 void * hashTable::getPointer(const std::string &key, bool *b)
 {
+    //Check if it exists
     int pos = findPos(key);
     if (pos == -1)
     {
