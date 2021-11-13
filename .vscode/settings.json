@@ -2,6 +2,21 @@
     "files.associations": {
         "vector": "cpp",
         "cstdlib": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "__hash_table": "cpp",
+        "__split_buffer": "cpp",
+        "__tree": "cpp",
+        "bitset": "cpp",
+        "filesystem": "cpp",
+        "map": "cpp",
+        "set": "cpp"
     }
 }
