@@ -1,8 +1,8 @@
-dijkstra.exe: dijkstra.o graph.o heap.o hash.o
-	g++ -o dijkstra.exe dijkstra.o graph.o heap.o hash.o
+useDijkstra.exe: useDijkstra.o graph.o heap.o hash.o
+	g++ -o useDijkstra.exe useDijkstra.o graph.o heap.o hash.o
 
-dijkstra.o: dijkstra.cpp
-	g++ -c dijkstra.cpp
+useDijkstra.o: useDijkstra.cpp
+	g++ -c useDijkstra.cpp
 
 graph.o: graph.cpp graph.h
 	g++ -c graph.cpp

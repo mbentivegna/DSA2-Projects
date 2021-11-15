@@ -1,11 +1,7 @@
 /*
 Michael Bentivegna
-Heap Assignment
+Dijkstra Assignment
 
-        This assignment uses a binary heap implementation of a priority queue to properly execute operations on an object's id and corresponding key. These
-    operations include insert, deleteMin, setKey, and remove. In order to make each operation execute in average case logarithmic time, a hashtable was 
-    used to properly search for a given id. Private class functions, most notably percolateUp and percolateDown were used to streamline this functionality.
-    Each public function had to return the correct value under the given conditions in order for useHeap.cpp to function properly.  
 */
 
 #include <iostream>

@@ -1,9 +1,7 @@
 /*
 Michael Bentivegna
-Heap Assignment
+Dijkstra Assignment
 
-        Check the heap.cpp for a full description of the project. This hashtable class has been updated to allow the heap to 
-    better it's time complexity when searching for given id's. 
 */
 
 #include "hash.h"
