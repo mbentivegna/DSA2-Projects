@@ -17,6 +17,10 @@
         "bitset": "cpp",
         "filesystem": "cpp",
         "map": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "fstream": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "random": "cpp"
     }
 }
